@@ -1,0 +1,124 @@
+.timeline {
+  max-width: 720px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.item {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* ── Timeline line ── */
+.lineCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+  padding-top: 1.75rem;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-primary);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+  flex-shrink: 0;
+}
+
+.line {
+  width: 2px;
+  flex: 1;
+  background: var(--border);
+  margin-top: 0.5rem;
+  min-height: 20px;
+}
+
+/* ── Card ── */
+.card {
+  flex: 1;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cardTop {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.typeTag {
+  font-size: 0.7rem;
+  margin-bottom: 0.5rem;
+  background: rgba(88, 166, 255, 0.1);
+  color: var(--accent);
+  border-color: var(--border-accent);
+}
+
+.role {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.org {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.period {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  margin-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.descList {
+  margin-top: 1rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.descItem {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.descItem::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .cardTop {
+    flex-direction: column;
+  }
+
+  .period {
+    margin-top: 0;
+  }
+
+  .lineCol {
+    display: none;
+  }
+}
