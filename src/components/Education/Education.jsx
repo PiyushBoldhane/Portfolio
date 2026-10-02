@@ -35,19 +35,19 @@ const EDUCATION = [
 
 const CONTAINER = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.06 } },
 };
 
 const ITEM_ANIM = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
 export default function Education() {
   const { ref, inView } = useFadeInView(0.15);
 
   return (
-    <section id="education" className={`section ${styles.educationSection}`}>
+    <section id="education" className="section">
       <div className="container">
         <div className="section-header">
           <span className="section-label">Education</span>

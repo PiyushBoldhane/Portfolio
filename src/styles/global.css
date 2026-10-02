@@ -11,8 +11,8 @@
   --bg-primary: #0d1117;
   --bg-secondary: #161b22;
   --bg-tertiary: #1c2128;
-  --bg-card: #1c2128;
-  --bg-card-hover: #21262d;
+  --bg-card: #12161c;
+  --bg-card-hover: #161b22;
 
   --text-primary: #e6edf3;
   --text-secondary: #8b949e;
@@ -24,8 +24,8 @@
   --accent-glow: rgba(88, 166, 255, 0.15);
   --accent-hover: #79c0ff;
 
-  --border: #30363d;
-  --border-subtle: #21262d;
+  --border: #21262d;
+  --border-subtle: #1c2128;
   --border-accent: rgba(88, 166, 255, 0.3);
 
   --success: #3fb950;
@@ -165,10 +165,6 @@ button:focus-visible {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
-  padding: 0.25rem 0.75rem;
-  background: var(--accent-glow);
-  border: 1px solid var(--border-accent);
-  border-radius: var(--radius-full);
 }
 
 .section-title {
@@ -262,15 +258,13 @@ button:focus-visible {
 /* ── Card ─────────────────────────────────────────────────── */
 .card {
   background: var(--bg-card);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  transition: all var(--transition-base);
+  transition: border-color var(--transition-base);
 }
 
 .card:hover {
-  border-color: var(--border-accent);
-  box-shadow: var(--shadow-accent);
-  background: var(--bg-card-hover);
+  border-color: var(--border);
 }
 
 /* ── Tag / Pill ───────────────────────────────────────────── */
@@ -289,7 +283,7 @@ button:focus-visible {
 }
 
 .tag-accent {
-  background: var(--accent-glow);
+  background: transparent;
   color: var(--accent);
   border-color: var(--border-accent);
 }
@@ -353,13 +347,6 @@ button:focus-visible {
 ::selection {
   background: var(--accent);
   color: #fff;
-}
-
-/* ── Grid background subtle ───────────────────────────────── */
-.grid-bg {
-  background-image: linear-gradient(var(--border-subtle) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px);
-  background-size: 64px 64px;
 }
 
 /* ── Reduced motion ───────────────────────────────────────── */

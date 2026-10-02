@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, ChevronRight, X } from "lucide-react";
 import { Github } from "../Icons/Icons";
@@ -8,12 +8,12 @@ import styles from "./Projects.module.css";
 
 const CONTAINER = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.06 } },
 };
 
 const CARD_ANIM = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.1, 0.25, 1] } },
+  hidden: { opacity: 0, y: 10 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.25, 0.1, 0.25, 1] } },
 };
 
 export default function Projects() {
@@ -21,7 +21,7 @@ export default function Projects() {
   const [selected, setSelected] = useState(null);
 
   return (
-    <section id="projects" className={`section ${styles.projectsSection}`}>
+    <section id="projects" className="section">
       <div className="container">
         <div className="section-header">
           <span className="section-label">Work</span>
@@ -135,6 +135,13 @@ function ProjectCard({ project, onDetails }) {
 function ProjectModal({ project, onClose }) {
   useBodyScrollLock(true);
   useEscapeKey(onClose);
+  const closeBtnRef = useRef(null);
+
+  useEffect(() => {
+    const previouslyFocused = document.activeElement;
+    closeBtnRef.current?.focus();
+    return () => previouslyFocused?.focus?.();
+  }, []);
 
   return (
     <div
@@ -158,6 +165,7 @@ function ProjectModal({ project, onClose }) {
             <h2 className={styles.modalTitle}>{project.title}</h2>
           </div>
           <button
+            ref={closeBtnRef}
             onClick={onClose}
             className={styles.closeBtn}
             aria-label="Close project details"

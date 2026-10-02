@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Moon, Sun, Menu, X, FileText } from "lucide-react";
 import { useTheme } from "../../context/ThemeContext";
 import { useActiveSection } from "../../hooks/usePortfolio";
+import siteConfig from "../../config/siteConfig";
 import styles from "./Navbar.module.css";
 
 const NAV_LINKS = [
@@ -18,14 +19,7 @@ const SECTION_IDS = ["about", "skills", "projects", "experience", "education", "
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const activeSection = useActiveSection(SECTION_IDS);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   // Close menu on route/hash change
   useEffect(() => {
@@ -39,7 +33,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ""}`} role="banner">
+    <header className={styles.navbar} role="banner">
       <div className={`container ${styles.inner}`}>
         {/* Logo */}
         <a
@@ -80,7 +74,7 @@ export default function Navbar() {
         {/* Desktop Actions */}
         <div className={styles.actions}>
           <a
-            href="/resume.pdf"
+            href={siteConfig.resumeViewUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="btn btn-secondary btn-sm"
@@ -135,7 +129,7 @@ export default function Navbar() {
           );
         })}
         <a
-          href="/resume.pdf"
+          href={siteConfig.resumeViewUrl}
           target="_blank"
           rel="noopener noreferrer"
           className={`${styles.mobileLink} ${styles.mobileLinkAccent}`}

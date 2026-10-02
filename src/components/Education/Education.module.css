@@ -1,7 +1,3 @@
-.educationSection {
-  background: var(--bg-secondary);
-}
-
 .grid {
   display: flex;
   flex-direction: column;

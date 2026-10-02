@@ -15,22 +15,21 @@ export default function About() {
   const { ref, inView } = useFadeInView(0.2);
 
   return (
-    <section id="about" className={`section ${styles.about}`}>
+    <section id="about" className="section">
       <div className="container">
         <div className="section-header">
           <span className="section-label">About</span>
           <h2 className="section-title">A bit about me</h2>
         </div>
 
-        <motion.div
-          ref={ref}
-          className={styles.grid}
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        >
+        <div ref={ref} className={styles.grid}>
           {/* Text */}
-          <div className={styles.textSide}>
+          <motion.div
+            className={styles.textSide}
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <p className={styles.para}>
               I&apos;m a Computer Science undergraduate at{" "}
               <strong>SB Jain Institute of Technology, Management &amp; Research</strong>,
@@ -55,10 +54,15 @@ export default function About() {
               problem-solving — and I&apos;m looking for opportunities where I can contribute,
               learn from experienced developers, and build real things.
             </p>
-          </div>
+          </motion.div>
 
           {/* Currently focused on */}
-          <div className={styles.sideSide}>
+          <motion.div
+            className={styles.sideSide}
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.45, delay: 0.08, ease: [0.25, 0.1, 0.25, 1] }}
+          >
             <div className={styles.focusCard}>
               <div className={styles.focusHeader}>
                 <Terminal size={15} className={styles.focusIcon} />
@@ -95,8 +99,8 @@ export default function About() {
                 <span className={styles.statLabel}>Primary Language</span>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );

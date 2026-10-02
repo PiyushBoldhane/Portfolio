@@ -110,20 +110,9 @@
   }
 }
 
-.copy,
-.built {
+.copy {
   font-size: 0.8rem;
   color: var(--text-muted);
-}
-
-.built {
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-}
-
-.heart {
-  color: #f85149;
 }
 
 /* ── Responsive ── */

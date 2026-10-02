@@ -1,4 +1,4 @@
-import { Mail, Heart } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Github, Linkedin } from "../Icons/Icons";
 import siteConfig from "../../config/siteConfig";
 import styles from "./Footer.module.css";
@@ -94,10 +94,6 @@ export default function Footer() {
       <div className={styles.bottom}>
         <p className={styles.copy}>
           © {year} Piyush Boldhane. All rights reserved.
-        </p>
-        <p className={styles.built}>
-          Built with React &amp; Vite
-          <Heart size={12} className={styles.heart} aria-hidden="true" />
         </p>
       </div>
     </footer>

@@ -5,13 +5,22 @@ import siteConfig from "../../config/siteConfig";
 import styles from "./Hero.module.css";
 
 const FADE_UP = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 10 },
   visible: (delay = 0) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.6, delay, ease: [0.25, 0.1, 0.25, 1] },
+    transition: { duration: 0.45, delay, ease: [0.25, 0.1, 0.25, 1] },
   }),
 };
+
+/** First + last initials, used by the placeholder avatar until a real photo is added. */
+function getInitials(name) {
+  return name
+    .split(" ")
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
+}
 
 export default function Hero() {
   const scrollToProjects = () => {
@@ -20,34 +29,14 @@ export default function Hero() {
 
   return (
     <section id="hero" className={styles.hero} aria-label="Introduction">
-      {/* Subtle grid background */}
-      <div className={styles.gridBg} aria-hidden="true" />
-      {/* Accent glow blobs */}
-      <div className={styles.blobLeft} aria-hidden="true" />
-      <div className={styles.blobRight} aria-hidden="true" />
-
       <div className={`container ${styles.content}`}>
         <div className={styles.textBlock}>
-          {/* Status pill */}
-          <motion.div
-            className={styles.statusPill}
-            initial="hidden"
-            animate="visible"
-            custom={0}
-            variants={FADE_UP}
-          >
-            <span className={styles.statusDot} aria-hidden="true" />
-            <span className="mono" style={{ fontSize: "0.8rem" }}>
-              Open to internship opportunities
-            </span>
-          </motion.div>
-
           {/* Greeting */}
           <motion.p
             className={styles.greeting}
             initial="hidden"
             animate="visible"
-            custom={0.1}
+            custom={0}
             variants={FADE_UP}
           >
             Hi, I&apos;m
@@ -58,7 +47,7 @@ export default function Hero() {
             className={styles.name}
             initial="hidden"
             animate="visible"
-            custom={0.2}
+            custom={0.1}
             variants={FADE_UP}
           >
             Piyush Boldhane
@@ -69,7 +58,7 @@ export default function Hero() {
             className={styles.headline}
             initial="hidden"
             animate="visible"
-            custom={0.3}
+            custom={0.15}
             variants={FADE_UP}
           >
             Computer Science Undergraduate
@@ -82,7 +71,7 @@ export default function Hero() {
             className={styles.tagline}
             initial="hidden"
             animate="visible"
-            custom={0.4}
+            custom={0.2}
             variants={FADE_UP}
           >
             Computer Science undergraduate focused on Java, software development,
@@ -94,7 +83,7 @@ export default function Hero() {
             className={styles.buttons}
             initial="hidden"
             animate="visible"
-            custom={0.5}
+            custom={0.25}
             variants={FADE_UP}
           >
             <button
@@ -121,7 +110,7 @@ export default function Hero() {
             className={styles.socials}
             initial="hidden"
             animate="visible"
-            custom={0.6}
+            custom={0.3}
             variants={FADE_UP}
           >
             <a
@@ -149,97 +138,25 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* Terminal card */}
+        {/* Photo */}
         <motion.div
-          className={styles.terminalWrapper}
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
-          aria-hidden="true"
+          className={styles.photoBlock}
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.15, ease: [0.25, 0.1, 0.25, 1] }}
         >
-          <TerminalCard />
+          <div className={styles.photoGlow} aria-hidden="true" />
+          <div className={styles.photoFrame}>
+            {/*
+              Placeholder avatar — replace with an <img src="/your-photo.jpg" alt="Piyush Boldhane" />
+              inside .photoFrame once a real photo is available.
+            */}
+            <span className={styles.photoInitials} aria-hidden="true">
+              {getInitials("Piyush Boldhane")}
+            </span>
+          </div>
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className={styles.scrollIndicator}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2, duration: 0.6 }}
-        aria-hidden="true"
-      >
-        <div className={styles.scrollLine} />
-        <span className="mono text-muted" style={{ fontSize: "0.7rem" }}>
-          scroll
-        </span>
-      </motion.div>
     </section>
-  );
-}
-
-function TerminalCard() {
-  return (
-    <div className={styles.terminal}>
-      {/* Terminal title bar */}
-      <div className={styles.terminalBar}>
-        <div className={styles.terminalDots}>
-          <span style={{ background: "#ff5f57" }} />
-          <span style={{ background: "#ffbd2e" }} />
-          <span style={{ background: "#28c840" }} />
-        </div>
-        <span className={`${styles.terminalTitle} mono`}>~/piyush-boldhane</span>
-      </div>
-
-      {/* Terminal body */}
-      <div className={styles.terminalBody}>
-        <div className={styles.terminalLine}>
-          <span className={styles.prompt}>$</span>
-          <span className={styles.cmd}> whoami</span>
-        </div>
-        <div className={styles.terminalOutput}>
-          <span className={styles.key}>name</span>
-          <span className={styles.colon}>: </span>
-          <span className={styles.val}>&quot;Piyush Boldhane&quot;</span>
-        </div>
-        <div className={styles.terminalOutput}>
-          <span className={styles.key}>role</span>
-          <span className={styles.colon}>: </span>
-          <span className={styles.val}>&quot;CS Undergraduate&quot;</span>
-        </div>
-        <div className={styles.terminalOutput}>
-          <span className={styles.key}>focus</span>
-          <span className={styles.colon}>: </span>
-          <span className={styles.val}>[&quot;Java&quot;, &quot;Databases&quot;, &quot;Backend&quot;]</span>
-        </div>
-        <div className={styles.terminalOutput}>
-          <span className={styles.key}>cgpa</span>
-          <span className={styles.colon}>: </span>
-          <span className={styles.valNum}>8.76</span>
-        </div>
-        <div className={styles.terminalOutput}>
-          <span className={styles.key}>status</span>
-          <span className={styles.colon}>: </span>
-          <span className={styles.valGreen}>&quot;Open to opportunities&quot;</span>
-        </div>
-
-        <div className={`${styles.terminalLine} ${styles.mt}`}>
-          <span className={styles.prompt}>$</span>
-          <span className={styles.cmd}> ls projects/</span>
-        </div>
-        <div className={styles.terminalOutput}>
-          <span className={styles.dir}>MovieRelay</span>
-          {"  "}
-          <span className={styles.dir}>JVM-Visualizer</span>
-          {"  "}
-          <span className={styles.dir}>GymMS</span>
-        </div>
-
-        <div className={`${styles.terminalLine} ${styles.mt}`}>
-          <span className={styles.prompt}>$</span>
-          <span className={styles.cursor}>▌</span>
-        </div>
-      </div>
-    </div>
   );
 }
